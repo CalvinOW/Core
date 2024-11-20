@@ -4,7 +4,7 @@ Core is a custom plugin created for Minecraft servers, offering various utilitie
 
 ## Features
 
-- **Command Help**: Shows useful commands for server operators.
+- **Command Help**: Shows useful commands for users.
 - **Player Reporting**: Allows players to report others directly to staff via Discord.
 - **Customizable Prefix**: Easily configurable prefix for the plugin’s messages.
   
