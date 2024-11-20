@@ -1,0 +1,9 @@
+general:
+  only-users: "This command can only be used by players!"
+  not-found: "This command was not found. Try '/chelp' for more info."
+
+report:
+  report-sent: "Your report has been sent successfully!"
+  no-permission: "You do not have permission to use this command."
+  usage: "Usage: /report <player> <reason>"
+  missing-webhook: "Discord webhook URL is not set in the config!"

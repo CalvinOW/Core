@@ -1,0 +1,13 @@
+name: Core
+version: '1.0-ALPHA'
+main: nl.calvinw.core.Core
+api-version: '1.21'
+description: A custom Core plugin made by CalvinW.
+author: CalvinW
+commands:
+  chelp:
+    description: Shows the help of the Core plugin
+    usage: /chelp
+  report:
+    description: Report a player to the staff
+    usage: /report <player> <reason>
