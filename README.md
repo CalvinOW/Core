@@ -6,6 +6,8 @@ Core is a custom plugin created for Minecraft servers, offering various utilitie
 
 - **Command Help**: Shows useful commands for users.
 - **Player Reporting**: Allows players to report others directly to staff via Discord.
+- **Voting**: Allows players to run `/vote`. You can set the messages and vote sites within the `messages.yml` file.
+- **Website link**: The command `/website` allows your players to check your website url.
 - **Customizable Prefix**: Easily configurable prefix for the plugin’s messages.
   
 ## Installation

@@ -1,3 +1,13 @@
+#
+# - This is the configuration file of the Core plugin.
+# - The Core plugin is made by CalvinW.
+#
+
+# - Prefix of the plugin.
 prefix: "&8[&fCore&8] &7»&f"
 
+# - Your website URL for '/website' command.
+website_url: "YOUR_SITE_URL_HERE"
+
+#- Your Discord webhook url.
 discord_webhook_url: "YOUR_DISCORD_WEBHOOK_URL"
