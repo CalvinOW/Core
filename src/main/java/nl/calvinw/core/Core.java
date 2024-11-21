@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 // Import commands
 import nl.calvinw.core.commands.chelp;
 import nl.calvinw.core.commands.report;
+import nl.calvinw.core.commands.vote;
+import nl.calvinw.core.commands.website;
 
 public final class Core extends JavaPlugin {
 
@@ -28,8 +30,22 @@ public final class Core extends JavaPlugin {
             getLogger().warning("Command 'report' is not registered in plugin.yml!");
         }
 
+        // Register the command executor for vote
+        if (getCommand("vote") != null) {
+            getCommand("vote").setExecutor(new vote(this));
+        } else {
+            getLogger().warning("Command 'vote' is not registered in plugin.yml!");
+        }
+
+        // Register the command executor for website
+        if (getCommand("website") != null) {
+            getCommand("website").setExecutor(new website(this));
+        } else {
+            getLogger().warning("Command 'website' is not registered in plugin.yml!");
+        }
+
         // Plugin startup messages
-        getLogger().info("/************ Custom Tools ************/");
+        getLogger().info("/************   Core -v1-  ************/");
         getLogger().info("/*             By CalvinW              /");
         getLogger().info("/*              Started!               /");
         getLogger().info("/**************************************/");
@@ -38,7 +54,7 @@ public final class Core extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown messages
-        getLogger().info("/************ Custom Tools ************/");
+        getLogger().info("/************   Core -v1-  ************/");
         getLogger().info("/*             By CalvinW              /");
         getLogger().info("/*              Stopped!               /");
         getLogger().info("/**************************************/");

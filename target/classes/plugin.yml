@@ -11,3 +11,9 @@ commands:
   report:
     description: Report a player to the staff
     usage: /report <player> <reason>
+  vote:
+    description: Get a list of the vote sites
+    usage: /vote
+  website:
+    description: Get the link of our website
+    usage: /website
