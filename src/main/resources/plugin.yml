@@ -17,3 +17,6 @@ commands:
   website:
     description: Get the link of our website
     usage: /website
+  showitem:
+    description: Show the item you're holding to the chat
+    usage: /showitem

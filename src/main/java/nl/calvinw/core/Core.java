@@ -7,6 +7,7 @@ import nl.calvinw.core.commands.chelp;
 import nl.calvinw.core.commands.report;
 import nl.calvinw.core.commands.vote;
 import nl.calvinw.core.commands.website;
+import nl.calvinw.core.commands.showitem;
 
 public final class Core extends JavaPlugin {
 
@@ -42,6 +43,13 @@ public final class Core extends JavaPlugin {
             getCommand("website").setExecutor(new website(this));
         } else {
             getLogger().warning("Command 'website' is not registered in plugin.yml!");
+        }
+
+        // Register the command executor for showitem
+        if (getCommand("showitem") != null) {
+            getCommand("showitem").setExecutor(new showitem(this));
+        } else {
+            getLogger().warning("Command 'showitem' is not registered in plugin.yml!");
         }
 
         // Plugin startup messages

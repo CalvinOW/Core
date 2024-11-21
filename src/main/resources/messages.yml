@@ -25,3 +25,8 @@ report:
 website:
   message: "Our website is &d{website_url}"
   no-site: "No website url has been configured."
+
+# - This is for the showitem command. {player} is the placeholder for the current player and {item} is the placeholder for the name of the item.
+showitem:
+  message: "{player} wanted to show the item {item}."
+  no-item: "You need to hold a item in your hand for this command."
