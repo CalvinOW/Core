@@ -2,19 +2,16 @@ package nl.calvinw.core.commands;
 
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.HoverEvent;
+import nl.calvinw.core.Core;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,9 +19,9 @@ import net.md_5.bungee.api.chat.BaseComponent;
 
 public class showitem implements CommandExecutor {
 
-    private final JavaPlugin plugin;
+    private final Core plugin;
 
-    public showitem(JavaPlugin plugin) {
+    public showitem(Core plugin) {
         this.plugin = plugin;
     }
 
@@ -32,7 +29,7 @@ public class showitem implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getMessage("general.only-users"));
+            sender.sendMessage(plugin.getMessage("general.only-users"));
             return true;
         }
 
@@ -40,7 +37,7 @@ public class showitem implements CommandExecutor {
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
         if (heldItem == null || heldItem.getType() == Material.AIR) {
-            player.sendMessage(getMessage("showitem.no-item"));
+            player.sendMessage(plugin.getMessage("showitem.no-item"));
             return true;
         }
 
@@ -50,7 +47,7 @@ public class showitem implements CommandExecutor {
         String loreText = getLore(heldItem);
 
         // Format the message
-        String messageTemplate = getMessage("showitem.message");
+        String messageTemplate = plugin.getMessage("showitem.message");
         String formattedMessage = messageTemplate
                 .replace("{player}", player.getName())
                 .replace("{item}", heldItem.getAmount() + "x " + itemName);
@@ -139,18 +136,6 @@ public class showitem implements CommandExecutor {
         }
 
         return hoverText;
-    }
-
-    private String getMessage(String path) {
-        File messagesFile = new File(plugin.getDataFolder(), "messages.yml");
-        if (!messagesFile.exists()) {
-            plugin.saveResource("messages.yml", false); // Save default if not found
-        }
-
-        YamlConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
-        String message = messagesConfig.getString(path, "Message not found for path: " + path);
-        String prefix = plugin.getConfig().getString("prefix", "&8[&fCore&8] &7»&f");
-        return ChatColor.translateAlternateColorCodes('&', prefix) + " " + ChatColor.translateAlternateColorCodes('&', message);
     }
 
     private String capitalize(String text) {

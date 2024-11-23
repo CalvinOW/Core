@@ -1,15 +1,12 @@
 package nl.calvinw.core.commands;
 
+import nl.calvinw.core.Core;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,9 +14,9 @@ import java.util.Arrays;
 
 public class report implements CommandExecutor {
 
-    private final JavaPlugin plugin;
+    private final Core plugin;
 
-    public report(JavaPlugin plugin) {
+    public report(Core plugin) {
         this.plugin = plugin;
     }
 
@@ -28,13 +25,13 @@ public class report implements CommandExecutor {
 
         // Check if the sender is a player
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getMessage("general.only-users"));  // Correct path
+            sender.sendMessage(plugin.getMessage("general.only-users"));  // Correct path
             return true;
         }
 
         // Check if the correct number of arguments is provided
         if (args.length < 2) {
-            sender.sendMessage(getMessage("report.usage"));
+            sender.sendMessage(plugin.getMessage("report.usage"));
             return false;
         }
 
@@ -46,7 +43,7 @@ public class report implements CommandExecutor {
         String discordWebhookUrl = plugin.getConfig().getString("discord_webhook_url");
 
         if (discordWebhookUrl == null || discordWebhookUrl.isEmpty()) {
-            sender.sendMessage(getMessage("report.missing-webhook"));
+            sender.sendMessage(plugin.getMessage("report.missing-webhook"));
             return true;
         }
 
@@ -54,7 +51,7 @@ public class report implements CommandExecutor {
         sendReportToDiscord(player.getName(), reportedPlayerName, reason, discordWebhookUrl);
 
         // Inform the player that the report was sent
-        player.sendMessage(getMessage("report.report-sent"));
+        player.sendMessage(plugin.getMessage("report.report-sent"));
 
         return true;
     }
@@ -102,26 +99,5 @@ public class report implements CommandExecutor {
         } catch (Exception e) {
             Bukkit.getLogger().severe("Error sending report to Discord: " + e.getMessage());
         }
-    }
-
-    private String getMessage(String path) {
-        // Retrieve prefix from config and convert color codes
-        String value = plugin.getConfig().getString("prefix", "&8[&fCore&8] &7»&f");
-        value = ChatColor.translateAlternateColorCodes('&', value); // Convert color codes in the prefix
-
-        // Load messages.yml file
-        File messagesFile = new File(plugin.getDataFolder(), "messages.yml");
-        if (!messagesFile.exists()) {
-            plugin.saveResource("messages.yml", false); // Save default if not found
-        }
-
-        // Load YamlConfiguration
-        YamlConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
-
-        // Get the message from messages.yml, or return the default if not found
-        String message = messagesConfig.getString(path, "Message not found for path: " + path);
-
-        // Return the message with the prefix added
-        return value + " " + ChatColor.translateAlternateColorCodes('&', message); // Add prefix and translate color codes
     }
 }

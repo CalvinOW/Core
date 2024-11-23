@@ -4,3 +4,5 @@ C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\showite
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\vote.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\website.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\Core.java
+C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\events\commandoverrider.java
+C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\events\joinleaveevent.java

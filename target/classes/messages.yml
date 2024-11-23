@@ -5,6 +5,13 @@
 general:
   only-users: "This command can only be used by players!"
   not-found: "This command was not found. Try '/chelp' for more info."
+  join-message: "&7[&a&l+&7] &f{player} has come online!"
+  leave-message: "&7[&c&l-&7] &f{player} has gone offline!"
+
+# - Custom join and leave messages
+messages:
+  join: "&7[&a&l+&7] &e{player} &7Just came online!"
+  leave: "&7[&c&l-&7] &e{player} &fJust went offline!"
 
 # - If you want to add more sites, add them as followed:
 # - site2: "YOUR_URL_HERE"

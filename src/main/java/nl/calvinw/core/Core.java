@@ -1,6 +1,10 @@
 package nl.calvinw.core;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
 
 // Import commands
 import nl.calvinw.core.commands.chelp;
@@ -9,48 +13,33 @@ import nl.calvinw.core.commands.vote;
 import nl.calvinw.core.commands.website;
 import nl.calvinw.core.commands.showitem;
 
+//Import events
+import nl.calvinw.core.events.joinleaveevent;
+import nl.calvinw.core.events.commandoverrider;
+
 public final class Core extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Save default config if it doesn't exist
         saveDefaultConfig();
+
+        vote voteCommandExecutor = new vote(this);
+
+        // Register event listeners
+        getServer().getPluginManager().registerEvents(new joinleaveevent(this), this);
+
+        // Register the command override listener
+        getServer().getPluginManager().registerEvents(new commandoverrider(this, voteCommandExecutor), this);
+
+
         saveResource("messages.yml", false);
 
-        // Register the command executor for chelp
-        if (getCommand("chelp") != null) {
-            getCommand("chelp").setExecutor(new chelp(this));
-        } else {
-            getLogger().warning("Command 'chelp' is not registered in plugin.yml!");
-        }
-
-        // Register the command executor for report
-        if (getCommand("report") != null) {
-            getCommand("report").setExecutor(new report(this));
-        } else {
-            getLogger().warning("Command 'report' is not registered in plugin.yml!");
-        }
-
-        // Register the command executor for vote
-        if (getCommand("vote") != null) {
-            getCommand("vote").setExecutor(new vote(this));
-        } else {
-            getLogger().warning("Command 'vote' is not registered in plugin.yml!");
-        }
-
-        // Register the command executor for website
-        if (getCommand("website") != null) {
-            getCommand("website").setExecutor(new website(this));
-        } else {
-            getLogger().warning("Command 'website' is not registered in plugin.yml!");
-        }
-
-        // Register the command executor for showitem
-        if (getCommand("showitem") != null) {
-            getCommand("showitem").setExecutor(new showitem(this));
-        } else {
-            getLogger().warning("Command 'showitem' is not registered in plugin.yml!");
-        }
+        this.getCommand("chelp").setExecutor(new chelp(this));
+        this.getCommand("report").setExecutor(new report(this));
+        this.getCommand("vote").setExecutor(voteCommandExecutor);
+        this.getCommand("website").setExecutor(new website(this));
+        this.getCommand("showitem").setExecutor(new showitem(this));
 
         // Plugin startup messages
         getLogger().info("/************   Core -v1-  ************/");
@@ -67,4 +56,26 @@ public final class Core extends JavaPlugin {
         getLogger().info("/*              Stopped!               /");
         getLogger().info("/**************************************/");
     }
+
+    public String getMessage(String path) {
+        // Load messages.yml file
+        File messagesFile = new File(getDataFolder(), "messages.yml");
+        if (!messagesFile.exists()) {
+            saveResource("messages.yml", false); // Save default if not found
+        }
+
+        // Load YamlConfiguration
+        YamlConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
+
+        // Get the message from messages.yml, or return the default if not found
+        String message = messagesConfig.getString(path, "Message not found for path: " + path);
+
+        // Retrieve prefix from config and convert color codes
+        String prefix = getConfig().getString("prefix", "&8[&fCore&8] &7»&f");
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix); // Convert color codes in the prefix
+
+        // Return the message with the prefix added
+        return prefix + " " + ChatColor.translateAlternateColorCodes('&', message); // Add prefix and translate color codes
+    }
+
 }
