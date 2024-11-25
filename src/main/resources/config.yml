@@ -11,3 +11,7 @@ website_url: "YOUR_SITE_URL_HERE"
 
 #- Your Discord webhook url.
 discord_webhook_url: "YOUR_DISCORD_WEBHOOK_URL"
+
+sellwand:
+  material: "BLAZE_ROD"
+  max-uses: 10

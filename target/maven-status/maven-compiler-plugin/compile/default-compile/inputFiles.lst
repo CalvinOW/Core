@@ -1,4 +1,5 @@
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\chelp.java
+C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\givesellwand.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\report.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\showitem.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\vote.java
@@ -6,3 +7,4 @@ C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\commands\website
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\Core.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\events\commandoverrider.java
 C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\events\joinleaveevent.java
+C:\Users\Calvin\IdeaProjects\Core\src\main\java\nl\calvinw\core\events\sellwand.java

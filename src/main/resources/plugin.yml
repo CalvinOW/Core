@@ -4,6 +4,9 @@ main: nl.calvinw.core.Core
 api-version: '1.21'
 description: A custom Core plugin made by CalvinW.
 author: CalvinW
+depend:
+  - Vault
+softdepend: [EconomyShopGUI, EconomyShopGUI-Premium]
 commands:
   chelp:
     description: Shows the help of the Core plugin
@@ -20,3 +23,15 @@ commands:
   showitem:
     description: Show the item you're holding to the chat
     usage: /showitem
+  sellwand:
+    description: Gives you a sellwand
+    usage: /sellwand
+    permission: sellwand.give
+    permission-message: You do not have permission to use this command.
+permissions:
+  sellwand.give:
+    description: Allows the player to use the /sellwand command.
+    default: op
+  sellwand.use:
+    description: Allows the player to use a sell wand.
+    default: op

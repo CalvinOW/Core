@@ -1,8 +1,10 @@
-nl\calvinw\core\Core.class
-nl\calvinw\core\commands\vote.class
+nl\calvinw\core\events\sellwand.class
 nl\calvinw\core\events\joinleaveevent.class
-nl\calvinw\core\commands\report.class
-nl\calvinw\core\commands\chelp.class
+nl\calvinw\core\commands\givesellwand.class
 nl\calvinw\core\commands\showitem.class
 nl\calvinw\core\events\commandoverrider.class
 nl\calvinw\core\commands\website.class
+nl\calvinw\core\Core.class
+nl\calvinw\core\commands\vote.class
+nl\calvinw\core\commands\report.class
+nl\calvinw\core\commands\chelp.class

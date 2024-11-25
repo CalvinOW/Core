@@ -3,37 +3,54 @@
 #
 
 general:
-  only-users: "This command can only be used by players!"
-  not-found: "This command was not found. Try '/chelp' for more info."
-  join-message: "&7[&a&l+&7] &f{player} has come online!"
-  leave-message: "&7[&c&l-&7] &f{player} has gone offline!"
+  only-users: "&cThis command can only be used by players!"
+  not-found: "&cUnknown command. Try &f/chelp &cfor more info."
+  no-permission: "&cYou don't have permission to use this command!"
 
-# - Custom join and leave messages
+# - Custom join and leave messages use {player} as a placeholder.
 messages:
-  join: "&7[&a&l+&7] &e{player} &7Just came online!"
-  leave: "&7[&c&l-&7] &e{player} &fJust went offline!"
+  join: "&7[&a&l+&7] &e{player} &7just joined the game!"
+  leave: "&7[&c&l-&7] &e{player} &7just left the game!"
 
-# - If you want to add more sites, add them as followed:
-# - site2: "YOUR_URL_HERE"
+# - Voting messages
 vote:
-  no-site: "No voting sites found."
-  no-url: "Url's not configured."
-  message: "Vote on the following sites for daily rewards:"
-  site1: "YOUR_URL_HERE"
-  #site2: "YOUR_URL_HERE"
+  no-site: "&cNo voting sites found. Please ask an admin to set them up."
+  no-url: "&cNo voting URLs configured. Please check the config."
+  message: "&6Vote on the following sites to earn &aawesome rewards:"
+  site1: "&bYOUR_URL_HERE"
+  #site2: "&bYOUR_URL_HERE"
 
+# - Report command messages
 report:
-  report-sent: "Your report has been sent successfully!"
-  no-permission: "You do not have permission to use this command."
-  usage: "Usage: /report <player> <reason>"
-  missing-webhook: "Discord webhook URL is not set in the config!"
+  report-sent: "&aYour report has been successfully sent to the staff!"
+  no-permission: "&cYou do not have permission to use this command."
+  usage: "&cUsage: /report <player> <reason>"
+  missing-webhook: "&cThe Discord webhook URL is not set in the config!"
 
-# - These are the messages of the '/website' command. Use {website_url} as the placeholder for the website url.
+# - Website command messages
 website:
-  message: "Our website is &d{website_url}"
-  no-site: "No website url has been configured."
+  message: "&6Our website: &d{website_url}"
+  no-site: "&cNo website URL has been configured."
 
-# - This is for the showitem command. {player} is the placeholder for the current player and {item} is the placeholder for the name of the item.
+# - ShowItem command messages
 showitem:
-  message: "{player} wanted to show the item {item}."
-  no-item: "You need to hold a item in your hand for this command."
+  message: "&b{player} &7wants to show you their item: &f{item}&7!"
+  no-item: "&cYou must hold an item in your hand to use this command!"
+
+# - Sell Wand messages
+sellwand:
+  item-name: "&6Sell Wand"
+  item-lore:
+    - "&fRight-click &7on a container to sell its contents!"
+    - "&7Earn &aextra money &7for valuable items!"
+  lore-uses: "&5Uses: {current}/{max}"
+  given: "&aYou have been given a &6Sell Wand&a!"
+  given-target: "&aYou have received a &6Sell Wand&a!"
+  sold: "&aYou successfully sold items for &6${amount}&a!"
+  no-items: "&cThere are no sellable items in this container."
+  error: "&cAn error occurred while creating the Sell Wand. Please contact an administrator."
+  broken:
+    title: "&cYour Sell Wand broke!"
+    subtitle: "&7It has reached its maximum uses."
+  no-player: "&cYou must specify a player to give the Sell Wand to!"
+  player-not-found: "&cPlayer &e{player}&c is not online or does not exist."
