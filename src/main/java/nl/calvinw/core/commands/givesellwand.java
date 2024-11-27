@@ -43,7 +43,7 @@ public class givesellwand implements CommandExecutor {
             // Get target player from argument
             targetPlayer = Bukkit.getPlayer(args[0]);
             if (targetPlayer == null || !targetPlayer.isOnline()) {
-                sender.sendMessage(getMessage("general.player-not-found").replace("{player}", args[0]));
+                sender.sendMessage(getMessage("sellwand.player-not-found").replace("{player}", args[0]));
                 return true;
             }
         } else {
@@ -51,7 +51,7 @@ public class givesellwand implements CommandExecutor {
             if (sender instanceof Player) {
                 targetPlayer = (Player) sender;
             } else {
-                sender.sendMessage(getMessage("general.specify-player"));
+                sender.sendMessage(getMessage("sellwand.no-player"));
                 return true;
             }
         }

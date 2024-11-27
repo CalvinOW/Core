@@ -69,8 +69,8 @@ public class sellwand implements Listener {
         double totalValue = 0.0;
         Map<ItemStack, Integer> itemsToRemove = new HashMap<>();
 
-        // Iterate through chest contents and calculate total value
-        for (ItemStack stack : inventory.getContents()) {
+        for (int slot = 0; slot < inventory.getSize(); slot++) {
+            ItemStack stack = inventory.getItem(slot);
             if (stack == null || stack.getType() == Material.AIR) {
                 continue;
             }
@@ -82,8 +82,8 @@ public class sellwand implements Listener {
                 Double pricePerItem = transaction.getPrice(EconomyType.getFromString("VAULT"));
 
                 if (pricePerItem != null && pricePerItem > 0) {
-                    totalValue += pricePerItem * stack.getAmount();
-                    itemsToRemove.put(stack, stack.getAmount());
+                    totalValue += pricePerItem;
+                    inventory.setItem(slot, null); // Clear the item from this slot
                 }
             }
         }
